@@ -42,7 +42,9 @@ void setup_udp_client(char *server_address, char* port, char *cliname)
         TIME_LOGGER("ERROR Client Name Empty\n");
         exit(1);
     }
-    strncpy(CLI_NAME, cliname, MAX_NAME_SIZE);
+    // Copy client name to CLI_NAME
+    strncpy(CLI_NAME, cliname, MAX_NAME_SIZE - 1);
+    CLI_NAME[MAX_NAME_SIZE - 1] = '\0'; // Ensure null-termination
 
     // config target server address
     bzero(&serveraddr, sizeof(serveraddr));
@@ -50,9 +52,13 @@ void setup_udp_client(char *server_address, char* port, char *cliname)
     serveraddr.sin_port = htons(server_port);
     // convert IP format from string "aa.bb.cc.dd" to correct form
     inet_pton(AF_INET, server_address, &serveraddr.sin_addr);
-
-    // create socket for client
+    
+    // Create socket for client
     sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+    if (sockfd < 0) {
+        perror("socket");
+        exit(EXIT_FAILURE);
+    }
 
     // call service function
     cli_service(stdin, sockfd, (SA *) &serveraddr, sizeof(serveraddr));
