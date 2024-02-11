@@ -9,12 +9,6 @@ The project example of using UDP socket with select() System Call on multiplexin
 ├── CMakeLists.txt
 ├── README.md
 ├── build
-│   ├── CMakeCache.txt
-│   ├── CMakeFiles
-│   ├── Makefile
-│   ├── cmake_install.cmake
-│   ├── compile_commands.json
-│   └── tmp.txt
 ├── build.sh
 ├── client
 │   ├── client.c
