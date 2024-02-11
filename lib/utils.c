@@ -1,5 +1,15 @@
 #include "util.h"
-
+#include <stdarg.h>
+void TIME_LOGGER(const char* format, ...) {
+    // char time_stamp[20];
+    // get_current_time(time_stamp, 20);
+    printf("**");
+    // Print the rest of the message using variable arguments
+    va_list args;
+    va_start(args, format);
+    vprintf(format, args);
+    va_end(args);
+}
 /**
  * get current time stamp and store it in the provided buffer
  * return o on success, -1 on failure

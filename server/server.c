@@ -10,6 +10,31 @@ const char RESPONSE_ERR_DISCONNECTED[] = "ERROR RECEIVER CLIENT DISCONNECTED";
 client_info_t connected_clients[MAX_CLIENTS] = {0};
 
 /**
+ * setup server socket
+*/
+void setup_server_socket(int sockfd, int port) 
+{
+    struct sockaddr_in server_addr;
+    const int on = 1;
+
+    // Initialize server address structure
+    memset(&server_addr, 0, sizeof(server_addr));
+    server_addr.sin_family = AF_INET; // IPv4
+    server_addr.sin_addr.s_addr = htonl(INADDR_ANY);
+    server_addr.sin_port = htons(port);
+
+    // Set socket option to reuseable
+    setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on));
+
+    // Bind socket to the server address
+    if (bind(sockfd, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0) {
+        perror("bind");
+        TIME_LOGGER("Socket binding error\n");
+        exit(EXIT_FAILURE);
+    }
+}
+
+/**
  * set up udp server for echo function
 */
 void setup_udp_server()
@@ -20,19 +45,18 @@ void setup_udp_server()
     struct sockaddr_in cliaddr;
     const int on = 1;
 
-    // create server socket
-    for (int i=0; i<MAX_SOCKETS; i++) {
-        socket_list[i] = socket(AF_INET, SOCK_DGRAM, 0);
-        // init serveraddr struct with zero
-        bzero(&server_addrs[i], sizeof(server_addrs[i]));
-        // config server address 1
-        server_addrs[i].sin_family = AF_INET; // IPv4
-        server_addrs[i].sin_addr.s_addr = htonl(INADDR_ANY); // using wildcard port to specify all local interface will be in interest
-        server_addrs[i].sin_port = htons(server_ports[i]);
-        // set socket option to reuseable
-        setsockopt(socket_list[i], SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on));
-        // bind sockfd with address 1
-        bind(socket_list[i], (SA*) &server_addrs[i], sizeof(server_addrs[i]));
+    // Create server sockets
+    for (int i = 0; i < MAX_SOCKETS; i++) {
+        TIME_LOGGER("Create server socket\n");
+        // Create socket
+        if ((socket_list[i] = socket(AF_INET, SOCK_DGRAM, 0)) < 0) {
+            perror("socket");
+            TIME_LOGGER("Socket openning error\n");
+            exit(EXIT_FAILURE);
+        }
+
+        // Setup server socket
+        setup_server_socket(socket_list[i], (i == 0) ? SERV_PORT1 : SERV_PORT2);
     }
 
     // call transfer service

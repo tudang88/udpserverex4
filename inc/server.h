@@ -7,11 +7,7 @@
 #define MAX_CLIENTS 10
 #define MAX_SOCKETS 2
 #define MAX_NAME_SIZE 40
-// message type
-#define TYPE_CMD 11
-#define TYPE_MSG 22
-#define TYPE_RES 33
-#define TYPE_END 44
+
 
 // server will maintain 
 // a list of connected clients
@@ -35,6 +31,7 @@ typedef struct server_t {
 */
 void remove_client(client_info_t *cli_list, const char *cli_name);
 int register_client(client_info_t *cli_list, const char *cli_name);
+void setup_server_socket(int sockfd, int port);
 void setup_udp_server();
 int get_max_fd(int *fd_list);
 void transfer_service(int* sockfd_list);
