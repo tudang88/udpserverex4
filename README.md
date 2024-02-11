@@ -1,6 +1,6 @@
 # UDP Server & Client Example
 
-##1. Introduction
+## 1. Introduction
 The project example of using UDP socket with select() System Call on multiplexing.
 ![](docs/demo1.png)
 ![](docs/demo2.png)
