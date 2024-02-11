@@ -50,14 +50,14 @@ The project example of using UDP socket with select() System Call on multiplexin
 ## 3. Build project
 Run the build.sh script from the root folder to build the project.
 ## 4. Run the apps
-### 4.1: Client
+### 4.1 Client
 * Change directory to out folder and run the below command
     ```
     ./udpclient <Server machine IP> <PORT> <Client  name>
     ```
    * The Server machine IP will be 127.0.0.1 for localhost
    * The port, please use 9877 or 9878
-### 4.1: Server
+### 4.1 Server
 * Change directory to out folder and run the below command 
     ```
     ./udpserver
