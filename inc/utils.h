@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <time.h>
 // logger with time stamp prefix
 void TIME_LOGGER(const char* format, ...);
 // get current time stamp for output log

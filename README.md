@@ -38,7 +38,7 @@ The project example of using UDP socket with select() System Call on multiplexin
 | 1  | client      | Source code of udpclient app |
 | 2  | Server      | Source code of udpserver app |
 | 3  | inc         | Header files location |
-| 34  | lib         | Source code and library of the static common lib used in the project |
+| 4  | lib         | Source code and library of the static common lib used in the project |
 | 5  | out         | The output binary archived location |
 
 ## 3. Build project

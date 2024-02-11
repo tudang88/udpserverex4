@@ -4,6 +4,8 @@ void TIME_LOGGER(const char* format, ...) {
     // char time_stamp[20];
     // get_current_time(time_stamp, 20);
     printf("**");
+    // printf("[%s]", time_stamp);
+
     // Print the rest of the message using variable arguments
     va_list args;
     va_start(args, format);
