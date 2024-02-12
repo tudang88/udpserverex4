@@ -105,7 +105,6 @@ void transfer_service(int* sockfd_list)
     TIME_LOGGER("transfer_service -> START\n");
 
     int nready;
-    client_info_t connected_clients[MAX_CLIENTS];
     fd_set rset;
 
     // monitor and handle incomming package
