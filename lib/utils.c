@@ -1,5 +1,6 @@
 #include "util.h"
 #include <stdarg.h>
+#include <time.h>
 void TIME_LOGGER(const char* format, ...) {
     // char time_stamp[20];
     // get_current_time(time_stamp, 20);
