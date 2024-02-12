@@ -251,6 +251,7 @@ void receive_from_client(int sockfd)
                     // only for initializing connection
                     if (serialize_message(&msg, sendline, sizeof(sendline)) != 0) {
                         TIME_LOGGER("Error on serialize_message()!!\n");
+                        break;
                     }
 
                     sendto(sockfd, (void*) sendline, sizeof(sendline), 0, (SA *)&cliaddr, clilen);
@@ -262,6 +263,7 @@ void receive_from_client(int sockfd)
                     // only for initializing connection
                     if (serialize_message(&msg, sendline, sizeof(sendline)) != 0) {
                         TIME_LOGGER("Error on serialize_message()!!\n");
+                        break;
                     }
 
                     sendto(sockfd, (void*) sendline, sizeof(sendline), 0, (SA *)&cliaddr, clilen);
@@ -283,6 +285,7 @@ void receive_from_client(int sockfd)
                     // only for initializing connection
                     if (serialize_message(&msg, sendline, sizeof(sendline)) != 0) {
                         TIME_LOGGER("Error on serialize_message()!!\n");
+                        break;
                     }
 
                     sendto(sockfd, (void*) sendline, sizeof(sendline), 0, (SA *)&cliaddr, clilen);
@@ -293,6 +296,7 @@ void receive_from_client(int sockfd)
                     // only for initializing connection
                     if (serialize_message(&msg, sendline, sizeof(sendline)) != 0) {
                         TIME_LOGGER("Error on serialize_message()!!\n");
+                        break;
                     }
                     // transfer message to receiver client
                     sendto(connected_clients[to_cli_idx].connected_sockfd, (void*) sendline, 
