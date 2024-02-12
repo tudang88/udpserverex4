@@ -56,7 +56,7 @@ void setup_udp_server()
         }
 
         // Setup server socket
-        setup_server_socket(socket_list[i], (i == 0) ? SERV_PORT1 : SERV_PORT2);
+        setup_server_socket(socket_list[i], server_ports[i]);
     }
 
     // call transfer service
